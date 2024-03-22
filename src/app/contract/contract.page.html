@@ -1,0 +1,89 @@
+<!-- <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button default-href="/home"></ion-back-button>
+  </ion-buttons>
+  <ion-title class="toolbar-title">Finalizar</ion-title>
+</ion-toolbar> -->
+
+<app-toolbar
+[currentStep]="currentNumber"
+(nextPage)="nextSubmit()"
+></app-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="ion-text-center">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <div class="img-container">
+            <ion-img
+              src="assets/image/OinkPolicia.svg"
+              alt="iconPolicia"
+            ></ion-img>
+          </div>
+        </ion-col>
+        <ion-col size="9">
+          <ion-item lines="none">
+            <ion-label class="contract-card-title"
+              >Estás muy cerca de ser parte de COINK.</ion-label
+            >
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label class="contract-card-subtitle"
+              >Solo es necesario que leas detenidamente el contrato que se
+              encuentra al final de esta pantalla y lo aceptes.</ion-label
+            >
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <mat-divider class="line"></mat-divider>
+  <ion-content collapse="condense">
+    <mat-card>
+      <mat-card-title>Lo más importante</mat-card-title>
+      <mat-card-content>
+        <p>
+          Para la apertura del Depósito de Bajo Monto en COINK debes ser una
+          persona natural que de acuerdo con nuestra legislación vigente te
+          encuentres en plena capacidad para adquirir derechos y contraer
+          obligaciones.
+        </p>
+        <p>
+          Apirás una cuenta COINK de Bajo Monto la cual te permitirá tener un
+          saldo hasta por 8 salarios mínimos en el mes y realizar débitos por el
+          mismo valor. Si deseas sopepasar estos límites debes solicitarnos la
+          apertura de un Depósito Ordinario COINK Persona Natural.
+        </p>
+        <p>
+          Solo puedes tener una cuenta COINK de Bajo Monto y podrás utilizar tu
+          dispositivo móvil para consultar tu saldo, tus movimientos, realizar
+          tus transacciones y administrar tu cuenta.
+        </p>
+        <p>
+          Recuerda que no necesitas saldo mínimo ni monto Inicial para su
+          apertura.
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content>
+        <span class="contract-lee">Lee tu contrato</span>
+        <section class="example-section">
+          <mat-checkbox color="primary" class="custom-checkbox" #checkbox
+            >He leído ya acepto el contrato</mat-checkbox
+          >
+        </section>
+        <mat-card-actions class="button-submit">
+          <button
+            mat-button
+            class="full-width custom-button"
+            type="submit"
+            [disabled]="!checkbox.checked"
+          >            Aceptar
+          </button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+  </ion-content>
+</ion-content>

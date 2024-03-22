@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'phone',
+    loadChildren: () => import('./phone/phone.module').then( m => m.PhonePageModule)
+  },
+  {
+    path: 'accountdata',
+    loadChildren: () => import('./accountdata/accountdata.module').then( m => m.AccountdataPageModule)
+  },
+  {
+    path: 'contract',
+    loadChildren: () => import('./contract/contract.module').then( m => m.ContractPageModule)
+  },
 ];
 
 @NgModule({

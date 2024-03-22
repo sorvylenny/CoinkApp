@@ -1,27 +1,58 @@
-#container {
+.image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  margin-top: 20%;
+}
+img{
+  width: 100%;
+  height: 100%;
+}
+.title{
   text-align: center;
+  color:#1EEA00 ;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2.4;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
+.register{
+  --background: #1EEA00;
+  --color: #004B40;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  font-weight: bold;
+  line-height: 1.8;
+  margin-top: 30%;
 }
 
-#container a {
-  text-decoration: none;
+.login{
+  --background: #004B40;
+  --color: #FFFFFF;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.8;
+
+}
+
+/* archive loading template */
+.loading {
+  width: 40px;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side, #004B40 90%, #0000) 0 / calc(100% / 3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  animation: l1 1s steps(4) infinite;
+}
+
+@keyframes l1 {
+  to {
+    clip-path: inset(0 -34% 0 0);
+  }
 }
