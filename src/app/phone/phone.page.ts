@@ -8,11 +8,16 @@ import { NavController } from "@ionic/angular";
   styleUrls: ["./phone.page.scss"]
 })
 export class PhonePage {
+blur() {
+throw new Error('Method not implemented.');
+}
   currentNumber: number = 0;
   loading: boolean = false;
   phoneNumber = this._formBuilder.group({
     phoneNumber: ["", [Validators.required, Validators.maxLength(10)]]
   });
+  showKeyboard: boolean = false;
+  numberBuffer: string = '';
   constructor(
     private _formBuilder: FormBuilder,
     private navCtrl: NavController
@@ -33,7 +38,23 @@ export class PhonePage {
     } else {
       console.log("Invalid form submission");
     }
+  }
+  openKeyboard() {
+    this.showKeyboard = true;
+  }
 
-
+  addNumber(number: number) {
+    this.numberBuffer += number.toString();
+    if (this.numberBuffer.length <= 10) {
+      this.phoneNumber.patchValue({
+        phoneNumber: this.numberBuffer,
+      });
+    }
+  }
+  deleteNumber(){
+    this.numberBuffer = this.numberBuffer.slice(0, -1);
+    this.phoneNumber.patchValue({
+      phoneNumber: this.numberBuffer,
+    });
   }
 }

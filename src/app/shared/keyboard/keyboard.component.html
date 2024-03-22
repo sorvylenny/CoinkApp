@@ -1,0 +1,30 @@
+<ion-card class="ion-text-center">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let number of numbers">
+        <ion-button (click)="addNumber(number)" fill="clear">{{ number }}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <!-- Botón para eliminar -->
+      <ion-col size="4">
+        <ion-button fill="clear" (click)="deleteNumber()"><ion-icon name="backspace-outline"></ion-icon></ion-button>
+      </ion-col>
+      <!-- Botón para el número 0 -->
+      <ion-col size="4">
+        <ion-button fill="clear" (click)="addNumber(0)">0</ion-button>
+      </ion-col>
+      <!-- Botón para aceptar con icono de palomita -->
+      <ion-col size="4">
+        <ion-button fill="clear" (click)="acceptNumber()" [disabled]="!formValid">
+          <ng-container *ngIf="!loading"> <!-- Si no está cargando -->
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </ng-container>
+          <ion-spinner *ngIf="loading" name="dots"></ion-spinner> <!-- Si está cargando -->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
