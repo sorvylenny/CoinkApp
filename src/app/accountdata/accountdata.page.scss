@@ -1,4 +1,10 @@
-.toolbar-title{
+@charset"UTF-8";
+@font-face {
+  font-family: 'Avenir LT Std 55 Roman';
+  src: url('/assets/font/AvenirLTStd-Roman.otf') format('opentype');
+}
+
+.data-title{
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-weight: 800;
@@ -12,6 +18,13 @@
   margin: 5px 15px 10px 15px;
   border-bottom: 2px solid #1EEB00;
 }
+mat-label{
+  font-family: 'Avenir LT Std 55 Roman';
+  color: #757575;
+  font-size: 16px;
+  text-align: left;
+
+}
 
 .full-width{
   width: 100%;
@@ -23,7 +36,7 @@
   line-height: 1.8;
   text-transform: uppercase;
   color: #004B40;
-  margin: 0 0 0 15px;
+  margin: 0 0 20px 10px;
 }
 ion-img{
   width: 140px;
@@ -47,7 +60,7 @@ ion-img{
 }
 
 .dataTitle{
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Avenir LT Std 55 Roman';
   color: #757575;
   font-size: 16px;
   text-align: left;

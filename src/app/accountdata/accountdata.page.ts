@@ -3,6 +3,7 @@ import {  FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { DocumenTypeService } from '../services/documen-type.service';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { UserDataService } from '../services/user-data.service';
 
 export const MY_DATA_FORMATS = {
   parse: {
@@ -27,10 +28,11 @@ export class AccountdataPage implements OnInit {
   selecteDocument: any;
   hidePassword: boolean = true;
   hidePasswordconf: boolean= true
+  generos = ['Femenino','Masculino'];
 
   dataccount = this._formBuilder.group({
     tipoDocumento: ["", Validators.required],
-    numeroDocumento: ["", [Validators.required, Validators.minLength(8)]],
+    numeroDocumento: ["", [Validators.required, Validators.maxLength(10)]],
     fechaExpedicion: ["", [Validators.required, this.validateDate]],
     fechaNacimiento: ["", [Validators.required, this.validateDate]],
     genero: ["", Validators.required],
@@ -42,7 +44,8 @@ export class AccountdataPage implements OnInit {
 
   constructor( private _formBuilder: FormBuilder,
     private navCtrl: NavController,
-    private documentService: DocumenTypeService) { }
+    private documentService: DocumenTypeService,
+    private userDataService: UserDataService) { }
 
   ngOnInit() {
     this.documentService.typeDocument().subscribe({
@@ -75,6 +78,8 @@ export class AccountdataPage implements OnInit {
     console.log(this.loading);
     if (this.dataccount.valid) {
       this.currentNumber++;
+      this.userDataService.setMultipleUserData(this.dataccount.value);
+      console.log('data:',this.dataccount.value);
       setTimeout(() => {
         console.log('esperando 2 segundos...');
         this.navCtrl.navigateForward("/contract");

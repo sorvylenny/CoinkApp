@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserDataService } from '../services/user-data.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-contract',
@@ -8,11 +10,22 @@ import { Component } from '@angular/core';
 export class ContractPage  {
 
   currentNumber: number = 2;
+  checkbox : boolean = false;
 
-  constructor() { }
+  constructor(private userDataService: UserDataService,
+              private navCtrl: NavController){}
 
-  nextSubmit(){
-    this.currentNumber = 1
+  nextToPage(){
+    this.currentNumber = -1
+
+  }
+  nextSubmit(accepted: boolean){
+    this.checkbox = accepted;
+    if (accepted) {
+      this.userDataService.setUserData('contractAccepted', true);
+      console.log('Contract accepted:', accepted);
+      this.navCtrl.navigateForward('/successful');
+    }
   }
 
 

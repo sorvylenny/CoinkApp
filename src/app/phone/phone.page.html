@@ -3,8 +3,7 @@
   (stepChanged)="onSubmit()"
 ></app-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-card class="ion-text-center">
+<ion-content [fullscreen]="true" class="ion-padding">
     <ion-card-content class="ion-align-self-center">
       <ion-grid>
         <ion-row>
@@ -17,35 +16,29 @@
             <ion-item lines="none">
               <ion-label class="phone-card-title"
                 >Para comenzar, por favor ingresa
-                <strong>tu número celular</strong></ion-label
-              >
+                <strong>tu número celular</strong></ion-label>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
-  </ion-card>
-  <mat-divider class="line"></mat-divider>
-  <ion-content collapse="condense">
-    <form [formGroup]="phoneNumber" (ngSubmit)="onSubmit()">
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label slot="start">Numero</mat-label>
-        <input
-        matInput
-        type="tel"
-        formControlName="phoneNumber"
-        name="phoneNumber"
-        placeholder="(XXX-XXXXXXX)"
-        pattern="[0-9]*"
-        inputmode="numeric"
-        readonly
-        />
-        <mat-error
-          *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched">
-          Por favor ingresa un número válido de 10 dígitos.
-        </mat-error>
-      </mat-form-field>
-      <div>
+    <mat-divider class="line"></mat-divider>
+
+  <ion-content collapse="condense" class="ion-padding">
+     <form [formGroup]="phoneNumber" (ngSubmit)="onSubmit()">
+        <ion-item class="ion-text-center input-container">
+          <ion-input
+            formControlName="phoneNumber"
+            type="tel"
+            inputmode="numeric"
+            placeholder="(XXX - XXXXXXX)"
+            readonly
+          ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched">
+          <ion-text color="danger">Por favor ingresa un número válido de 10 dígitos.</ion-text>
+        </ion-item>
+      <div class="keyboard-container">
         <app-keyboard
           *ngIf="!showKeyboard"
           [loading]="loading"

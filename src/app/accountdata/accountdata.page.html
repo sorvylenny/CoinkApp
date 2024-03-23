@@ -1,12 +1,11 @@
 
-
 <app-toolbar
 [currentStep]="currentNumber"
 (nextPage)="nextSubmit()"
 ></app-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-card class="ion-text-center">
+<ion-content [fullscreen]="true" class="ion-padding">
+
   <ion-card-content class="ion-align-self-center">
     <ion-grid>
       <ion-row>
@@ -17,7 +16,7 @@
         </ion-col>
         <ion-col size="9">
               <ion-item lines="none">
-                <ion-label class="data-card-title toolbar-title">¿CUÁLES SON TUS DATOS?</ion-label>
+                <ion-label class="data-card-title data-title">¿CUÁLES SON TUS DATOS?</ion-label>
               </ion-item>
               <ion-item lines="none">
                 <ion-label class="data-card-subtitle dataTitle">Ahora necesitamos saber algunos datos tuyos.</ion-label>
@@ -26,14 +25,14 @@
       </ion-row>
     </ion-grid>
   </ion-card-content>
-</ion-card>
   <mat-divider class="line"></mat-divider>
-  <ion-content collapse="condense">
+
+  <ion-content collapse="condense" class="ion-padding">
     <ion-toolbar>
     <span class="title">Documento de identidad</span>
     <hr>
       <form [formGroup]="dataccount" (ngSubmit)="nextSubmit()">
-        <mat-form-field class="full-width" appearance="outline">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Tipo de Documento</mat-label>
           <mat-select formControlName="tipoDocumento">
             <mat-option *ngFor="let docType of typeDocument" [value]="docType.id">
@@ -44,17 +43,22 @@
             El tipo del documento es obligatorio.
            </mat-error>
         </mat-form-field>
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Número de documento</mat-label>
-          <input type="text" matInput formControlName="numeroDocumento" placeholder="1234567890" min="0"
-                 required>
-            <mat-error *ngIf="dataccount.get('numeroDocumento')?.invalid && dataccount.get('numeroDocumento')?.touched">
-             El numero del documento es obligatorio.
-            </mat-error>
+          <input type="text" matInput formControlName="numeroDocumento" placeholder="1234567890" min="0">
+          <!-- Primer mat-error para validar la longitud del número de documento -->
+          <mat-error *ngIf="dataccount.get('numeroDocumento')?.errors?.['maxlength']">
+            El número de documento debe tener 10 dígitos.
+          </mat-error>
+          <!-- Segundo mat-error para validar si el campo es obligatorio -->
+          <mat-error *ngIf="dataccount.get('numeroDocumento')?.errors?.['required'] && dataccount.get('numeroDocumento')?.touched">
+            El número de documento es obligatorio.
+          </mat-error>
         </mat-form-field>
+
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Fecha de expedición del documento</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="fechaExpedicion" placeholder="Seleccione una fecha" required>
+          <input matInput [matDatepicker]="picker" formControlName="fechaExpedicion" placeholder="Seleccione una fecha">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="dataccount.get('fechaExpedicion')?.invalid && (dataccount.get('fechaExpedicion')?.dirty || dataccount.get('fechaExpedicion')?.touched)">
@@ -64,7 +68,7 @@
 
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Fecha de nacimiento</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento" placeholder="Seleccione una fecha" required>
+          <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento" placeholder="Seleccione una fecha">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
           <mat-error *ngIf="dataccount.get('fechaNacimiento')?.invalid && (dataccount.get('fechaNacimiento')?.dirty || dataccount.get('fechaNacimiento')?.touched)">
@@ -74,13 +78,13 @@
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Género</mat-label>
         <mat-select formControlName="genero" placeholder="Seleccione su género">
-          <mat-option value="masculino">Masculino</mat-option>
-          <mat-option value="femenino">Femenino</mat-option>
+          <mat-option *ngFor="let genero of generos" [value]="genero">{{ genero }}</mat-option>
         </mat-select>
         <mat-error *ngIf="dataccount.get('genero')?.invalid && dataccount.get('genero')?.touched">
-          El genero es obligatorio.
-         </mat-error>
+          El género es obligatorio.
+        </mat-error>
       </mat-form-field>
+
 
       <mat-divider></mat-divider>
       <hr>
@@ -88,16 +92,14 @@
         <hr>
       <mat-form-field class="full-width">
         <mat-label>Correo electronico</mat-label>
-        <input matInput formControlName="correoElectronico" placeholder=""
-               required>
+        <input matInput formControlName="correoElectronico" placeholder="">
         <mat-error *ngIf="dataccount.get('correoElectronico')?.invalid && dataccount.get('correoElectronico')?.touched">
          El correo electronico es obligatorio.
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Confirmar correo electronico</mat-label>
-        <input matInput formControlName="confirmarCorreo" placeholder=""
-        required>
+        <input matInput formControlName="confirmarCorreo" placeholder="">
         <mat-icon *ngIf="dataccount.get('confirmarCorreo')?.valid" style="color: #1EEA00;"  matSuffix >check</mat-icon>
         <mat-error *ngIf="dataccount.get('confirmarCorreo')?.invalid && dataccount.get('confirmarCorreo')?.touched">
           Los correo deben ser iguales.

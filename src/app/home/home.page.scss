@@ -23,36 +23,29 @@ img{
 .register{
   --background: #1EEA00;
   --color: #004B40;
+  --background-hover:var(--background);
+  --transition: background-color 0.3s;
+  --background-activated:var(--background);
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-weight: bold;
   line-height: 1.8;
-  margin-top: 30%;
+  margin: 20% 0 5% 0;
+
 }
 
 .login{
   --background: #004B40;
   --color: #FFFFFF;
+  --background-hover:var(--background);
+  --transition: background-color 0.3s;
+  --background-activated:var(--background);
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: semibold;
   line-height: 1.8;
-
+  text-align: center;
 }
 
-/* archive loading template */
-.loading {
-  width: 40px;
-  aspect-ratio: 4;
-  background: radial-gradient(circle closest-side, #004B40 90%, #0000) 0 / calc(100% / 3) 100% space;
-  clip-path: inset(0 100% 0 0);
-  animation: l1 1s steps(4) infinite;
-}
-
-@keyframes l1 {
-  to {
-    clip-path: inset(0 -34% 0 0);
-  }
-}

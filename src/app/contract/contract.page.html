@@ -1,17 +1,10 @@
-<!-- <ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button default-href="/home"></ion-back-button>
-  </ion-buttons>
-  <ion-title class="toolbar-title">Finalizar</ion-title>
-</ion-toolbar> -->
-
 <app-toolbar
 [currentStep]="currentNumber"
-(nextPage)="nextSubmit()"
+(nextPage)=" nextToPage()"
 ></app-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-card class="ion-text-center">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card-content class="ion-align-self-center">
     <ion-grid>
       <ion-row>
         <ion-col size="3">
@@ -37,10 +30,10 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </ion-card-content>
   <mat-divider class="line"></mat-divider>
-  <ion-content collapse="condense">
-    <mat-card>
+  <ion-content collapse="condense" class="ion-padding">
+
       <mat-card-title>Lo más importante</mat-card-title>
       <mat-card-content>
         <p>
@@ -65,25 +58,26 @@
           apertura.
         </p>
       </mat-card-content>
-    </mat-card>
-    <mat-card>
-      <mat-card-content>
-        <span class="contract-lee">Lee tu contrato</span>
-        <section class="example-section">
-          <mat-checkbox color="primary" class="custom-checkbox" #checkbox
-            >He leído ya acepto el contrato</mat-checkbox
-          >
-        </section>
-        <mat-card-actions class="button-submit">
-          <button
-            mat-button
-            class="full-width custom-button"
-            type="submit"
-            [disabled]="!checkbox.checked"
-          >            Aceptar
-          </button>
-        </mat-card-actions>
-      </mat-card-content>
-    </mat-card>
+
+      <div class="leer-contrato">
+        <mat-card-content>
+          <span class="contract-lee">Lee tu contrato</span>
+          <section class="example-section">
+            <mat-checkbox color="primary" class="custom-checkbox" #checkbox
+              >He leído ya acepto el contrato</mat-checkbox
+            >
+          </section>
+          <mat-card-actions class="button-submit">
+            <button
+              mat-button
+              class="full-width custom-button"
+              type="submit"
+              [disabled]="!checkbox.checked"
+              (click)="nextSubmit(checkbox.checked)">
+                 Aceptar
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+      </div>
   </ion-content>
 </ion-content>
