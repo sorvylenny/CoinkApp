@@ -1,105 +1,119 @@
-import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, FormControl, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
-import { DocumenTypeService } from '../services/documen-type.service';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { UserDataService } from '../services/user-data.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { NavController } from "@ionic/angular";
+import { DocumenTypeService } from "../services/documen-type.service";
+import { UserDataService } from "../services/user-data.service";
+import { Document } from "../interface/document";
 
-export const MY_DATA_FORMATS = {
-  parse: {
-    dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMMM YYYY',
-  },
-};
 @Component({
-  selector: 'app-accountdata',
-  templateUrl: './accountdata.page.html',
-  styleUrls: ['./accountdata.page.scss'],
-  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_DATA_FORMATS }],
+  selector: "app-accountdata",
+  templateUrl: "./accountdata.page.html",
+  styleUrls: ["./accountdata.page.scss"]
 })
 export class AccountdataPage implements OnInit {
   loading: boolean = false;
   currentNumber: number = 1;
   isEmailConfirmed: boolean = false;
-  typeDocument: any[] = [];
-  selecteDocument: any;
+  identification: Document[] = [];
   hidePassword: boolean = true;
-  hidePasswordconf: boolean= true
-  generos = ['Femenino','Masculino'];
+  hidePasswordconf: boolean = true;
+  generos = ["Femenino", "Masculino"];
 
   dataccount = this._formBuilder.group({
-    tipoDocumento: ["", Validators.required],
-    numeroDocumento: ["", [Validators.required, Validators.maxLength(10)]],
-    fechaExpedicion: ["", [Validators.required, this.validateDate]],
-    fechaNacimiento: ["", [Validators.required, this.validateDate]],
-    genero: ["", Validators.required],
-    correoElectronico: ["", [Validators.required, Validators.email]],
-    confirmarCorreo: ["", Validators.required],
+    typeDocument: ["", Validators.required],
+    numberDocument: ["", [Validators.required, Validators.maxLength(10)]],
+    dateExpedition: ["", [Validators.required, this.validateDate]],
+    dateBirth: [ "",[Validators.required, this.validateDate, this.validateAge(18)]
+    ],
+    gender: ["", Validators.required],
+    email: ["", [Validators.required, Validators.email]],
+    confirmMail: ["", Validators.required],
     password: ["", [Validators.required, Validators.minLength(4)]],
-    confirmarPassword: ["", [Validators.required,  Validators.minLength(4)]]
+    confirmPassword: ["", [Validators.required, Validators.minLength(4)]]
   });
 
-  constructor( private _formBuilder: FormBuilder,
+  constructor(
+    private _formBuilder: FormBuilder,
     private navCtrl: NavController,
     private documentService: DocumenTypeService,
-    private userDataService: UserDataService) { }
+    private userDataService: UserDataService
+  ) {}
 
   ngOnInit() {
     this.documentService.typeDocument().subscribe({
       next: data => {
-        this.typeDocument = data;
+        this.identification = data;
       },
       error: error => console.error(error)
     });
 
     this.setupPasswordValidation();
     this.setupEmailValidation();
-
   }
+  /* Validates a date input field */
   validateDate(control: FormControl): { [key: string]: any } | null {
     if (isNaN(Date.parse(control.value))) {
-      return { 'invalidDate': true };
+      return { invalidDate: true };
     }
     return null;
   }
-
+/* Returns a function that validates the age based on the minimum age provided. */
+  validateAge(minimumAge: number) {
+    return (control: FormControl): { [key: string]: any } | null => {
+      const birthday = new Date(control.value);
+      const today = new Date();
+      let age = today.getFullYear() - birthday.getFullYear();
+      const monthDiff = today.getMonth() - birthday.getMonth();
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthday.getDate())
+      ) {
+        age--;
+      }
+      if (age < minimumAge) {
+        return { invalidAge: true };
+      }
+      return null;
+    };
+  }
+/* Resets the value of the dateExpedition control to null. */
   setExpeditionDate() {
-    const fechaExpedicionControl = this.dataccount.get('fechaExpedicion');
-    if (fechaExpedicionControl) {
-      fechaExpedicionControl.setValue(null); // Aquí se asigna null en lugar de currentDate
+    const dateExpeditionControl = this.dataccount.get("dateExpedition");
+    if (dateExpeditionControl) {
+      dateExpeditionControl.setValue(null);
     }
   }
-
+  /* Initiates form submission process*/
   nextSubmit() {
     this.loading = true;
-    console.log(this.loading);
     if (this.dataccount.valid) {
-      this.currentNumber++;
       this.userDataService.setMultipleUserData(this.dataccount.value);
-      console.log('data:',this.dataccount.value);
       setTimeout(() => {
-        console.log('esperando 2 segundos...');
         this.navCtrl.navigateForward("/contract");
-        this.loading = false;
-        console.log(this.loading);
       }, 2000);
     } else {
-      console.log("Invalid form submission");
+      console.error("Invalid form submission");
     }
   }
+  /* Toggles the visibility of the password. */
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
+  /* Toggles the visibility of the password. */
   passwordVisibility() {
     this.hidePasswordconf = !this.hidePasswordconf;
   }
-
+/**
+ * Sets up email validation for a form.
+ * - Gets the email and confirm email fields from a data object.
+ * - Sets up a listener for changes to the email field.
+ * - When the email field changes, it sets the confirm email field's validators.
+ * - Updates the validity of the confirm email field.
+ * - Checks if the email confirmation is valid.
+ */
   setupEmailValidation() {
-    const emailControl = this.dataccount.get('correoElectronico');
-    const confirmarEmailControl = this.dataccount.get('confirmarCorreo');
+    const emailControl = this.dataccount.get("email");
+    const confirmarEmailControl = this.dataccount.get("confirmMail");
 
     if (emailControl && confirmarEmailControl) {
       emailControl.valueChanges.subscribe(() => {
@@ -109,7 +123,7 @@ export class AccountdataPage implements OnInit {
             Validators.required,
             Validators.email,
             Validators.pattern(emailValue),
-            Validators.minLength(4),
+            Validators.minLength(4)
           ]);
           confirmarEmailControl.updateValueAndValidity();
           this.checkEmailConfirmation();
@@ -117,9 +131,13 @@ export class AccountdataPage implements OnInit {
       });
     }
   }
+  /**
+ * Checks if the email confirmation matches the email input value.
+ * Sets the isEmailConfirmed flag accordingly.
+ */
   checkEmailConfirmation() {
-    const emailControl = this.dataccount.get('correoElectronico');
-    const confirmarEmailControl = this.dataccount.get('confirmarCorreo');
+    const emailControl = this.dataccount.get("email");
+    const confirmarEmailControl = this.dataccount.get("confirmMail");
 
     if (emailControl && confirmarEmailControl) {
       if (emailControl.value === confirmarEmailControl.value) {
@@ -129,26 +147,27 @@ export class AccountdataPage implements OnInit {
       }
     }
   }
-
+  /**
+ * Sets up password validation for the "password" and "confirmPassword" fields in the form.
+ * When the value of the "password" field changes, the validators of the "confirmPassword" field are updated to enforce certain requirements.
+ */
   setupPasswordValidation() {
-    const passwordControl = this.dataccount.get('password');
-    const confirmarPasswordControl = this.dataccount.get('confirmarPassword');
+    const passwordControl = this.dataccount.get("password");
+    const confirmarPasswordControl = this.dataccount.get("confirmPassword");
 
     if (passwordControl && confirmarPasswordControl) {
       passwordControl.valueChanges.subscribe(() => {
         const passwordValue = passwordControl.value;
-        if (passwordValue ) {
+        if (passwordValue) {
           confirmarPasswordControl.setValidators([
             Validators.required,
             Validators.minLength(4),
             Validators.pattern(/\d+$/),
-            Validators.pattern(passwordValue),
+            Validators.pattern(passwordValue)
           ]);
           confirmarPasswordControl.updateValueAndValidity();
         }
       });
     }
   }
-
-
 }

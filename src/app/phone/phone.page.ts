@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { NavController } from "@ionic/angular";
 import { UserDataService } from "../services/user-data.service";
@@ -12,34 +12,35 @@ export class PhonePage {
   currentNumber: number = 0;
   loading: boolean = false;
   phoneNumber = this._formBuilder.group({
-    phoneNumber: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11)]]
+    phoneNumber: [
+      "",
+      [Validators.required, Validators.minLength(11), Validators.maxLength(11)]
+    ]
   });
   showKeyboard: boolean = false;
-  numberBuffer: string = '';
+  numberBuffer: string = "";
   constructor(
     private _formBuilder: FormBuilder,
     private navCtrl: NavController,
     private userDataService: UserDataService
   ) {}
 
+  // Handles form submission by saving valid phone number to user data and navigating to account data//
   onSubmit() {
     if (this.phoneNumber.valid) {
       const phoneNumberValue = this.phoneNumber.value.phoneNumber;
-      this.userDataService.setUserData('phoneNumber', phoneNumberValue);
-      console.log('Phone number:', phoneNumberValue);
+      this.userDataService.setUserData("phoneNumber", phoneNumberValue);
       this.loading = true;
-      console.log(this.loading);
       setTimeout(() => {
-        console.log('esperando 2 segundos...');
         this.navCtrl.navigateForward("/accountdata");
         this.loading = false;
-        console.log(this.loading);
       }, 2000);
     } else {
-      console.log("Invalid form submission");
+      console.error("Invalid form submission");
     }
   }
 
+  // function implementation//
   addNumber(number: number) {
     if (this.numberBuffer.length < 11) {
       if (this.numberBuffer.length === 0 && number !== 3) {
@@ -47,34 +48,32 @@ export class PhonePage {
       }
 
       this.numberBuffer += number.toString();
-      let formattedNumber = '';
+      let formattedNumber = "";
       for (let i = 0; i < this.numberBuffer.length; i++) {
         formattedNumber += this.numberBuffer[i];
         if (i === 2) {
-          formattedNumber += '-';
+          formattedNumber += "-";
         }
       }
       this.phoneNumber.patchValue({
-        phoneNumber: formattedNumber,
+        phoneNumber: formattedNumber
       });
     }
   }
-
-
+// Removes the last digit from the number buffer, formats the remaining digits as a phone number, and updates the phoneNumber form control.//
   deleteNumber() {
     if (this.numberBuffer.length > 0) {
       this.numberBuffer = this.numberBuffer.slice(0, -1);
-      let formattedNumber = '';
+      let formattedNumber = "";
       for (let i = 0; i < this.numberBuffer.length; i++) {
         formattedNumber += this.numberBuffer[i];
         if (i === 2) {
-          formattedNumber += '-';
+          formattedNumber += "-";
         }
       }
       this.phoneNumber.patchValue({
-        phoneNumber: formattedNumber,
+        phoneNumber: formattedNumber
       });
     }
   }
-
 }

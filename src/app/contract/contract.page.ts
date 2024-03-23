@@ -19,11 +19,13 @@ export class ContractPage  {
     this.currentNumber = -1
 
   }
+  /* Updates the checkbox value and performs additional actions if the accepted parameter is true. */
   nextSubmit(accepted: boolean){
     this.checkbox = accepted;
     if (accepted) {
       this.userDataService.setUserData('contractAccepted', true);
-      console.log('Contract accepted:', accepted);
+      this.userDataService.completeRegistration();
+      console.log('complete registration', this.userDataService.completeRegistration());
       this.navCtrl.navigateForward('/successful');
     }
   }

@@ -29,6 +29,6 @@ export class UserDataService {
   }
 
   completeRegistration() {
-   this.userData;
+   console.log('registro completo',this.userData);
   }
 }

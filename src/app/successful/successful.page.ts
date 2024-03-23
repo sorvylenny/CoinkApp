@@ -12,10 +12,9 @@ export class SuccessfulPage  {
   constructor(private navCtrl: NavController,
     public userDataService: UserDataService) { }
 
+/* Navigates to the home route. */
   nextToHome() {
     this.navCtrl.navigateRoot('/home');
-    this.userDataService.completeRegistration();
-    console.log('complete registration', this.userDataService.completeRegistration());
   }
 
 }

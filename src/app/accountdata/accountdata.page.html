@@ -1,11 +1,11 @@
-
+<!-- Toolbar Dinamic -->
 <app-toolbar
-[currentStep]="currentNumber"
-(nextPage)="nextSubmit()"
-></app-toolbar>
+  [currentStep]="currentNumber"
+  (nextPage)="nextSubmit()"></app-toolbar>
+  <!-- end toolbar -->
 
 <ion-content [fullscreen]="true" class="ion-padding">
-
+<!-- card coinck -->
   <ion-card-content class="ion-align-self-center">
     <ion-grid>
       <ion-row>
@@ -15,121 +15,160 @@
           </div>
         </ion-col>
         <ion-col size="9">
-              <ion-item lines="none">
-                <ion-label class="data-card-title data-title">¿CUÁLES SON TUS DATOS?</ion-label>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-label class="data-card-subtitle dataTitle">Ahora necesitamos saber algunos datos tuyos.</ion-label>
-              </ion-item>
+          <ion-item lines="none">
+            <ion-label class="data-card-title data-title">¿CUÁLES SON TUS
+              DATOS?</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label class="data-card-subtitle dataTitle">Ahora necesitamos
+              saber algunos datos tuyos.</ion-label>
+          </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card-content>
   <mat-divider class="line"></mat-divider>
+  <!-- end card -->
 
   <ion-content collapse="condense" class="ion-padding">
     <ion-toolbar>
-    <span class="title">Documento de identidad</span>
-    <hr>
+      <span class="title">Documento de identidad</span>
+      <hr>
+      <!-- form document -->
       <form [formGroup]="dataccount" (ngSubmit)="nextSubmit()">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Tipo de Documento</mat-label>
-          <mat-select formControlName="tipoDocumento">
-            <mat-option *ngFor="let docType of typeDocument" [value]="docType.id">
+          <mat-select formControlName="typeDocument">
+            <mat-option *ngFor="let docType of identification "
+              [value]="docType.id">
               {{ docType.description }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="dataccount.get('tipoDocumento')?.invalid && dataccount.get('tipoDocumento')?.touched">
+          <mat-error
+            *ngIf="dataccount.get('typeDocument')?.invalid && dataccount.get('typeDocument')?.touched">
             El tipo del documento es obligatorio.
-           </mat-error>
+          </mat-error>
         </mat-form-field>
+        <!-- Form number document -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Número de documento</mat-label>
-          <input type="text" matInput formControlName="numeroDocumento" placeholder="1234567890" min="0">
-          <!-- Primer mat-error para validar la longitud del número de documento -->
-          <mat-error *ngIf="dataccount.get('numeroDocumento')?.errors?.['maxlength']">
+          <input type="text" matInput formControlName="numberDocument"
+            placeholder="1234567890" min="0">
+          <mat-error
+            *ngIf="dataccount.get('numberDocument')?.errors?.['maxlength']">
             El número de documento debe tener 10 dígitos.
           </mat-error>
-          <!-- Segundo mat-error para validar si el campo es obligatorio -->
-          <mat-error *ngIf="dataccount.get('numeroDocumento')?.errors?.['required'] && dataccount.get('numeroDocumento')?.touched">
+          <mat-error
+            *ngIf="dataccount.get('numberDocument')?.errors?.['required'] && dataccount.get('numberDocument')?.touched">
             El número de documento es obligatorio.
           </mat-error>
         </mat-form-field>
-
+        <!-- form date document  -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Fecha de expedición del documento</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="fechaExpedicion" placeholder="Seleccione una fecha">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker"
+            formControlName="dateExpedition" placeholder="Seleccione una fecha">
+          <mat-datepicker-toggle matSuffix
+            [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="dataccount.get('fechaExpedicion')?.invalid && (dataccount.get('fechaExpedicion')?.dirty || dataccount.get('fechaExpedicion')?.touched)">
+          <mat-error
+            *ngIf="dataccount.get('dateExpedition')?.invalid && (dataccount.get('dateExpedition')?.dirty || dataccount.get('dateExpedition')?.touched)">
             La fecha de expedición del documento es obligatoria.
           </mat-error>
         </mat-form-field>
-
+        <!-- form date birth -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Fecha de nacimiento</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento" placeholder="Seleccione una fecha">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker1" formControlName="dateBirth"
+            placeholder="Seleccione una fecha">
+          <mat-datepicker-toggle matSuffix
+            [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
-          <mat-error *ngIf="dataccount.get('fechaNacimiento')?.invalid && (dataccount.get('fechaNacimiento')?.dirty || dataccount.get('fechaNacimiento')?.touched)">
+          <mat-error
+            *ngIf="dataccount.get('dateBirth')?.errors?.['invalidAge']">
+            Debes ser mayor de 17 años.
+          </mat-error>
+          <mat-error
+            *ngIf="dataccount.get('dateBirth')?.invalid && (dataccount.get('dateBirth')?.dirty || dataccount.get('dateBirth')?.touched)">
             La fecha de nacimiento es obligatoria.
           </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Género</mat-label>
-        <mat-select formControlName="genero" placeholder="Seleccione su género">
-          <mat-option *ngFor="let genero of generos" [value]="genero">{{ genero }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="dataccount.get('genero')?.invalid && dataccount.get('genero')?.touched">
-          El género es obligatorio.
-        </mat-error>
-      </mat-form-field>
+        </mat-form-field>
+        <!-- form gender -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Género</mat-label>
+          <mat-select formControlName="gender"
+            placeholder="Seleccione su género">
+            <mat-option *ngFor="let genero of generos" [value]="genero">{{
+              genero }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="dataccount.get('gender')?.invalid && dataccount.get('gender')?.touched">
+            El género es obligatorio.
+          </mat-error>
+        </mat-form-field>
 
+        <mat-divider></mat-divider>
+        <hr>
 
-      <mat-divider></mat-divider>
-      <hr>
         <span class="title">Configura tu cuenta</span>
         <hr>
-      <mat-form-field class="full-width">
-        <mat-label>Correo electronico</mat-label>
-        <input matInput formControlName="correoElectronico" placeholder="">
-        <mat-error *ngIf="dataccount.get('correoElectronico')?.invalid && dataccount.get('correoElectronico')?.touched">
-         El correo electronico es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Confirmar correo electronico</mat-label>
-        <input matInput formControlName="confirmarCorreo" placeholder="">
-        <mat-icon *ngIf="dataccount.get('confirmarCorreo')?.valid" style="color: #1EEA00;"  matSuffix >check</mat-icon>
-        <mat-error *ngIf="dataccount.get('confirmarCorreo')?.invalid && dataccount.get('confirmarCorreo')?.touched">
-          Los correo deben ser iguales.
-        </mat-error>
-
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Pin de seguridad</mat-label>
-        <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" autocomplete="off">
-        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        <mat-error *ngIf="dataccount.get('password')?.invalid && dataccount.get('password')?.touched">
-          El PIN debe ser de 4 dígitos.
-         </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Confirmar PIN de seguridad</mat-label>
-        <input [type]="hidePasswordconf ? 'password' : 'text'" matInput formControlName="confirmarPassword" autocomplete="off">
-        <button mat-icon-button matSuffix (click)="passwordVisibility()" type="button">
-          <mat-icon>{{ hidePasswordconf ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        <mat-error *ngIf="dataccount.get('confirmarPassword')?.invalid">
-          Este campo no coincide con el PIN
-        </mat-error>
-      </mat-form-field>
+        <!-- form email -->
+        <mat-form-field class="full-width">
+          <mat-label>Correo electronico</mat-label>
+          <input matInput formControlName="email" placeholder>
+          <mat-error
+            *ngIf="dataccount.get('email')?.invalid && dataccount.get('email')?.touched">
+            El correo electronico es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <!-- form confirm email -->
+        <mat-form-field class="full-width">
+          <mat-label>Confirmar correo electronico</mat-label>
+          <input matInput formControlName="confirmMail" placeholder>
+          <mat-icon *ngIf="dataccount.get('confirmMail')?.valid"
+            style="color: #1EEA00;" matSuffix>check</mat-icon>
+          <mat-error
+            *ngIf="dataccount.get('confirmMail')?.invalid && dataccount.get('confirmMail')?.touched">
+            Los correo deben ser iguales.
+          </mat-error>
+        </mat-form-field>
+        <!-- form password -->
+        <mat-form-field class="full-width">
+          <mat-label>Pin de seguridad</mat-label>
+          <input [type]="hidePassword ? 'password' : 'text'" matInput
+            formControlName="password" autocomplete="off">
+          <button mat-icon-button matSuffix (click)="togglePasswordVisibility()"
+            type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility'
+              }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="dataccount.get('password')?.invalid && dataccount.get('password')?.touched">
+            El PIN debe ser de 4 dígitos.
+          </mat-error>
+        </mat-form-field>
+        <!-- form confirm password -->
+        <mat-form-field class="full-width">
+          <mat-label>Confirmar PIN de seguridad</mat-label>
+          <input [type]="hidePasswordconf ? 'password' : 'text'" matInput
+            formControlName="confirmPassword" autocomplete="off">
+          <button mat-icon-button matSuffix (click)="passwordVisibility()"
+            type="button">
+            <mat-icon>{{ hidePasswordconf ? 'visibility_off' : 'visibility'
+              }}</mat-icon>
+          </button>
+          <mat-error *ngIf="dataccount.get('confirmPassword')?.invalid">
+            Este campo no coincide con el PIN
+          </mat-error>
+        </mat-form-field>
+        <!-- form submit -->
         <div class="button-submit">
-          <button mat-button class="full-width custom-button" type="submit" [disabled]="!dataccount.valid"> <ng-container *ngIf="!loading">Siguiente</ng-container>
+          <button mat-button class="full-width custom-button" type="submit"
+            [disabled]="!dataccount.valid"> <ng-container
+              *ngIf="!loading">Siguiente</ng-container>
             <ion-spinner *ngIf="loading" name="dots"></ion-spinner></button>
         </div>
+        <!-- End form submit -->
       </form>
     </ion-toolbar>
   </ion-content>

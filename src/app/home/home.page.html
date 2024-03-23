@@ -1,6 +1,6 @@
 
 <ion-content class="ion-padding">
-  <div class="container">
+  <div>
     <div class="image">
       <img src="assets/image/coink.png" alt="">
     </div>
@@ -8,6 +8,7 @@
       <h1 class="title">LA ALCANCÍA QUE SIEMPRE TE ACOMPAÑA</h1>
     </div>
   </div>
+  <!-- Buttons -->
   <div class="container">
     <ion-button class="register" type="root" expand="block" shape="round" (click)="navigateToNextPage()" >
       <ng-container *ngIf="!loading" >
@@ -18,6 +19,7 @@
     </ion-button>
     <ion-button class="login" type="root" expand="block" shape="round">ingresa</ion-button>
   </div>
+  <!-- End buttons -->
 </ion-content>
 
 

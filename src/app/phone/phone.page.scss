@@ -1,45 +1,58 @@
-@charset"UTF-8";
+@charset "UTF-8";
 @font-face {
-  font-family: 'Avenir LT Std 55 Roman';
-  src: url('/assets/font/AvenirLTStd-Roman.otf') format('opentype');
+  font-family: "Avenir LT Std 55 Roman";
+  src: url("/assets/font/AvenirLTStd-Roman.otf") format("opentype");
 }
 
-.toolbar-img{
+.toolbar-img {
   width: 90%;
   height: 90%;
   display: flex;
   justify-content: center;
 }
+
 .input-container {
-  --background: #3535351A;
+  --background: #3535351a;
   margin-top: 20px;
   width: 100%;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.102);
   margin-bottom: 20px;
   font-size: 24px;
-  --color: #AAAAAA;
   opacity: 0.7;
   letter-spacing: 1.6px;
+
+  ion-input::placeholder {
+    color: #aaaaaa;
+  }
+
+  ion-input:focus::placeholder {
+    color: #212121 !important;
+  }
 }
-.keyboard-container{
+
+.keyboard-container {
   width: 100%;
   margin-top: 50px;
 }
 
-.phone-card-title{
-  color:#757575;
-  font-family: 'Avenir LT Std 55 Roman';
+.phone-card-title {
+  color: #757575;
+  font-family: "Avenir LT Std 55 Roman";
   font-size: 16pt;
   text-align: left;
 }
 
-ion-img{
-  width: 74px;
+ion-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 73px;
   height: 64px;
 }
-.line{
+
+.line {
   margin: 5px 15px 5px 15px;
-  border-bottom: 2px solid #1EEB00;
+  border-bottom: 2px solid #1eeb00;
 }
 
 .custom-button[disabled] {
@@ -48,7 +61,6 @@ ion-img{
 }
 
 .custom-button:not([disabled]) {
-  background-color: #1EEB00;
-  color: #004B40;
+  background-color: #1eeb00;
+  color: #004b40;
 }
-

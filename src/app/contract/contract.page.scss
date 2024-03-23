@@ -3,6 +3,10 @@
   font-family: 'Avenir LT Std 55 Roman';
   src: url('/assets/font/AvenirLTStd-Roman.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Avenir LT Std 95 Black';
+  src: url('/assets/font/AvenirLTStd-Roman.otf') format('opentype');
+}
 .toolbar-title{
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
@@ -17,10 +21,10 @@
  text-transform: uppercase;
  font-family: "Montserrat", sans-serif;
  font-size: 16px;
- font-weight: 800;
+ font-weight: bold;
  line-height: 1.2;
  --color: #004B40;
- text-align: justify;
+ text-align: left;
 }
 
 .contract-card-subtitle{
@@ -38,11 +42,11 @@
 mat-card-title{
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  font-weight: 800;
-  line-height: 1.8;
+  font-weight: bold;
+  line-height: 1.9;
   text-transform: uppercase;
   color: #004B40;
-  margin-left: 20px;
+  text-align: left;
 }
 
 mat-card-content{
@@ -57,11 +61,12 @@ mat-card-content{
 }
 
 .contract-lee{
-  font-family: "Avenir LT Std 55 Roman", sans-serif;
+  font-family: 'Avenir LT Std 95 Black';
   font-size: 16px;
-  font-weight: 800;
-  line-height: 1.8;
+  font-weight: 700;
+  line-height: 1.9;
   color: #004B40;
+  opacity: 0.9;
   margin-top: 20px;
   text-decoration: underline;
 }
@@ -99,13 +104,14 @@ ion-img{
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   line-height: 1.8;
-  width: 90%;
+  width: 100%;
   border-radius: 2rem;
-  margin: 0 0 0 20px;
+  margin: 20px 0 0 0;
+  padding: 30px 0;
 }
 
 .custom-button[disabled] {

@@ -1,43 +1,52 @@
+<!-- Toolbar Dinamic -->
 <app-toolbar
   [currentStep]="currentNumber"
-  (stepChanged)="onSubmit()"
-></app-toolbar>
-
+  (stepChanged)="onSubmit()"></app-toolbar>
+  <!-- end toolbar -->
+<!-- new section -->
 <ion-content [fullscreen]="true" class="ion-padding">
-    <ion-card-content class="ion-align-self-center">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="3">
-            <div class="img-container">
-              <ion-img src="assets/image/Oink-M.svg" alt="icon"></ion-img>
-            </div>
-          </ion-col>
-          <ion-col size="9">
-            <ion-item lines="none">
-              <ion-label class="phone-card-title"
-                >Para comenzar, por favor ingresa
-                <strong>tu número celular</strong></ion-label>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-    <mat-divider class="line"></mat-divider>
-
+  <!-- card coinck -->
+  <ion-card-content class="ion-align-self-center">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <div class="img-container">
+            <ion-img src="assets/image/Oink-M.svg" alt="icon"></ion-img>
+          </div>
+        </ion-col>
+        <ion-col size="9">
+          <ion-item lines="none">
+            <ion-label class="phone-card-title">Para comenzar, por favor ingresa
+              <strong>tu número celular</strong></ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+  <mat-divider class="line"></mat-divider>
+  <!-- end card -->
+<!-- new section -->
   <ion-content collapse="condense" class="ion-padding">
-     <form [formGroup]="phoneNumber" (ngSubmit)="onSubmit()">
-        <ion-item class="ion-text-center input-container">
-          <ion-input
-            formControlName="phoneNumber"
-            type="tel"
-            inputmode="numeric"
-            placeholder="(XXX - XXXXXXX)"
-            readonly
-          ></ion-input>
-        </ion-item>
-        <ion-item *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched">
-          <ion-text color="danger">Por favor ingresa un número válido de 10 dígitos.</ion-text>
-        </ion-item>
+    <!-- form phone -->
+    <form [formGroup]="phoneNumber" (ngSubmit)="onSubmit()">
+      <!-- input -->
+      <ion-item class="ion-text-center input-container">
+        <ion-input
+          formControlName="phoneNumber"
+          type="tel"
+          inputmode="numeric"
+          placeholder="(XXX - XXXXXXX)"
+          readonly></ion-input>
+      <!-- end input -->
+      </ion-item>
+      <!-- error message -->
+      <ion-item
+        *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched">
+        <ion-text color="danger">Por favor ingresa un número válido de 10
+          dígitos.</ion-text>
+      </ion-item>
+      <!-- end error message -->
+      <!-- keyboard -->
       <div class="keyboard-container">
         <app-keyboard
           *ngIf="!showKeyboard"
@@ -45,9 +54,11 @@
           [formValid]="phoneNumber.valid"
           (numberClicked)="addNumber($event)"
           (deleteClicked)="deleteNumber()"
-          (acceptClicked)="onSubmit()"
-        ></app-keyboard>
+          (acceptClicked)="onSubmit()"></app-keyboard>
       </div>
+      <!-- end keyboard -->
     </form>
+    <!-- end form -->
   </ion-content>
+  <!-- end new section -->
 </ion-content>
