@@ -76,7 +76,8 @@
             type="submit"
             [disabled]="!checkbox.checked"
             (click)="nextSubmit(checkbox.checked)">
-            Aceptar
+            <ng-container *ngIf="!loading"> Aceptar</ng-container>
+            <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
           </button>
         </mat-card-actions>
         <!-- end button submit -->

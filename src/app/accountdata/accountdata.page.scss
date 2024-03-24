@@ -6,12 +6,12 @@
 
 .data-title{
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.8;
+  font-size: 16pt;
+  font-weight: bold;
+  line-height: 1.9;
   text-transform: uppercase;
   --color: #004B40;
-  text-align: center;
+  text-align: left;
 }
 
 .line{
@@ -21,58 +21,52 @@
 mat-label{
   font-family: 'Avenir LT Std 55 Roman';
   color: #757575;
-  font-size: 16px;
+  font-size: 12pt;
+  line-height: 1.9;
   text-align: left;
 
-}
 
+}
 .full-width{
   width: 100%;
 }
 .title{
   font-family:"Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.8;
+  font-size: 16pt;
+  font-weight: bold;
+  line-height: 1.9;
   text-transform: uppercase;
   color: #004B40;
-  margin: 0 0 20px 10px;
+  margin: 0 0 60px 0px;
 }
 ion-img{
-  width: 140px;
-  height: 140px;
+  width: 72.35pt;
+  height: 77.07pt;
 }
 
 .img-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 10px;
 }
 
 .ion-card {
   margin: 0;
 }
 
-.data-card-title,
-.data-card-subtitle {
-  text-align: left;
-}
-
-.dataTitle{
+.cardTitle{
   font-family: 'Avenir LT Std 55 Roman';
   color: #757575;
-  font-size: 16px;
+  font-size: 16pt;
   text-align: left;
   text-align: justify;
   line-height: 1.5;
 }
 
-
 .button-submit button{
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: bold;
   display: flex;
   line-height: 1.8;
@@ -80,7 +74,7 @@ ion-img{
   width: 100%;
   border-radius: 2rem;
   margin: 30px 0 0 0;
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .custom-button[disabled] {
@@ -91,4 +85,28 @@ ion-img{
 .custom-button:not([disabled]) {
   background-color: #1EEB00;
   color: #004B40;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 475px) {
+  .title{
+    font-size: 14pt;
+    line-height: 1.0;
+  }
+  .cardTitle{
+    font-size: 12pt;
+  }
+  .data-title{
+    font-size: 14pt;
+    line-height: 1.5;
+  }
+  ion-img{
+    width: 60.35pt;
+    height: 67.07pt;
+  }
+  mat-label{
+    font-size: 10pt;
+  }
+  .button-submit button{
+    font-size: 14pt;
+  }
 }

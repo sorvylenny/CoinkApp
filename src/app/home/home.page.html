@@ -10,14 +10,14 @@
   </div>
   <!-- Buttons -->
   <div class="container">
-    <ion-button class="register" type="root" expand="block" shape="round" (click)="navigateToNextPage()" >
+    <ion-button class="register" type="root" expand="block" shape="round" size="large" (click)="navigateToNextPage()" >
       <ng-container *ngIf="!loading" >
-        Registrate
+        Regístrate
       </ng-container>
 
       <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
     </ion-button>
-    <ion-button class="login" type="root" expand="block" shape="round">ingresa</ion-button>
+    <ion-button class="login" type="root" expand="block" shape="round" size="large">ingresa</ion-button>
   </div>
   <!-- End buttons -->
 </ion-content>

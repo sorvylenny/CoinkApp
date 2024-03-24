@@ -14,7 +14,7 @@ img{
   text-align: center;
   color:#1EEA00 ;
   font-family: "Montserrat", sans-serif;
-  font-size: 18px;
+  font-size: 18pt;
   font-weight: bold;
   line-height: 2.4;
 
@@ -28,11 +28,10 @@ img{
   --background-activated:var(--background);
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: bold;
   line-height: 1.8;
-  margin: 20% 0 5% 0;
-
+  margin: 30% 0 5% 0;
 }
 
 .login{
@@ -43,9 +42,26 @@ img{
   --background-activated:var(--background);
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: semibold;
   line-height: 1.8;
   text-align: center;
 }
 
+@media only screen and (min-width: 360px) and (max-width: 475px) {
+  .title{
+    font-size: 16pt;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 15% 0 0 0;
+  }
+  .register{
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 40% 0 5% 0;
+  }
+  .login{
+    font-size: 14pt;
+    font-weight: semibold;
+  }
+}

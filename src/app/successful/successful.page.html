@@ -11,7 +11,9 @@
     <ion-card-content>
      ¡Cuenta creada exitosamente, tu marrano ya está listo para que empieces a ahorrar!
     </ion-card-content>
-    <ion-button shape="round" size="large" (click)="nextToHome()">Continuar</ion-button>
+    <ion-button shape="round" size="large" (click)="nextToHome()"> <ng-container *ngIf="!loading">Continuar</ng-container>
+      <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
+     </ion-button>
   </ion-card>
  </div>
 <!-- end card -->

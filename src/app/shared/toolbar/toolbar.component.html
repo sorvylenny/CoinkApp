@@ -1,8 +1,10 @@
 <ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button [defaultHref]="getBackRoute()"></ion-back-button>
+  <div class="ion-text-center">
+  <ion-buttons style="color:#1EEB00" slot="start">
+    <ion-back-button icon="chevron-back-outline" [defaultHref]="getBackRoute()"></ion-back-button>
   </ion-buttons>
   <ion-title class="toolbar-title">{{ pages[currentStep].title }}</ion-title>
+</div>
   <div>
     <div class="progress-container">
       <ng-container *ngFor="let page of pages; let i = index">

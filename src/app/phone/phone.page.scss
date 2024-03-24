@@ -4,12 +4,6 @@
   src: url("/assets/font/AvenirLTStd-Roman.otf") format("opentype");
 }
 
-.toolbar-img {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-}
 
 .input-container {
   --background: #3535351a;
@@ -17,7 +11,7 @@
   width: 100%;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.102);
   margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 24pt;
   opacity: 0.7;
   letter-spacing: 1.6px;
 
@@ -43,11 +37,8 @@
 }
 
 ion-img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 73px;
-  height: 64px;
+  width: 72.35pt;
+  height: 64pt;
 }
 
 .line {
@@ -55,12 +46,17 @@ ion-img {
   border-bottom: 2px solid #1eeb00;
 }
 
-.custom-button[disabled] {
-  background-color: rgb(228, 228, 228);
-  color: white;
-}
+@media only screen and (min-width: 360px) and (max-width: 475px) {
 
-.custom-button:not([disabled]) {
-  background-color: #1eeb00;
-  color: #004b40;
+  .input-container{
+    font-size: 18pt;
+  }
+  .phone-card-title{
+    font-size: 12pt;
+  }
+  ion-img{
+    width: 50pt;
+    height: 50pt;
+  }
+
 }

@@ -1,27 +1,31 @@
 ion-toolbar{
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.102);
 }
+
+.ion-text-center{
+  display: flex;
+}
 .toolbar-title{
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 16pt;
+  font-weight: bold;
   line-height: 1.8;
   text-transform: uppercase;
   color: #004B40;
   text-align: center;
-  margin-top: 10px;
+  margin: 10px 45px 0 0 !important;
 }
 .progress-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
+  padding: 0 70px;
   margin-bottom: 10px;
 }
 
 .circle-container {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border: 2px solid #1EEB00;
   display: flex;
@@ -30,8 +34,8 @@ ion-toolbar{
 }
 
 .progress-circle {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background-color: white;
   transition: background-color 0.3s;
@@ -44,6 +48,25 @@ ion-toolbar{
 .progress-line {
   flex-grow: 1;
   height: 2px;
-  background-color: #1EEB00;
-  margin: 0 4px;
+  background-color: #D3D3D3;
+  margin: 0 8px;
+}
+@media only screen and (min-width: 360px) and (max-width: 475px) {
+  .toolbar-title{
+    font-size: 12pt;
+  }
+  .progress-container {
+    padding: 0 60px;
+  }
+  .circle-container{
+    width: 20px;
+    height: 20px;
+  }
+  .progress-circle {
+    width: 10px;
+    height: 10px;
+  }
+  .progress-line {
+    height: 1.5px;
+  }
 }

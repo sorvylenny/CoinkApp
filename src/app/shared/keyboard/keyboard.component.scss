@@ -1,12 +1,32 @@
 ion-button{
   --color: #004B40;
-  font-size: 32px;
-  font-weight: 500;
+  font-size: 32pt;
   font-family: "Montserrat", sans-serif;
   text-align: left;
+  line-height: 4.0;
 }
 
-ion-grid {
-  width: 100% !important;
+.custom-button[disabled] {
+  background-color: #D3D3D3;
+  color: white;
+  border-radius:50%;
+  height: 70px;
+  width: 70px;
+}
+
+
+.custom-button:not([disabled]) {
+  background-color: #1eeb00;
+  color: #004b40;
+  border-radius:50%;
+  height: 70px;
+  width: 70px;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 475px) {
+  ion-button{
+    font-size: 24pt;
+  }
+
 }
 

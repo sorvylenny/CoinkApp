@@ -21,10 +21,9 @@ export class AccountdataPage implements OnInit {
 
   dataccount = this._formBuilder.group({
     typeDocument: ["", Validators.required],
-    numberDocument: ["", [Validators.required, Validators.maxLength(10)]],
+    numberDocument: ["", [Validators.required, Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
     dateExpedition: ["", [Validators.required, this.validateDate]],
-    dateBirth: [ "",[Validators.required, this.validateDate, this.validateAge(18)]
-    ],
+    dateBirth: [ "",[Validators.required, this.validateDate, this.validateAge(18)]   ],
     gender: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
     confirmMail: ["", Validators.required],

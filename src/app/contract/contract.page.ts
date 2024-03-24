@@ -11,6 +11,7 @@ export class ContractPage  {
 
   currentNumber: number = 2;
   checkbox : boolean = false;
+  loading: boolean = false;
 
   constructor(private userDataService: UserDataService,
               private navCtrl: NavController){}
@@ -22,14 +23,19 @@ export class ContractPage  {
   /* Updates the checkbox value and performs additional actions if the accepted parameter is true. */
   nextSubmit(accepted: boolean){
     this.checkbox = accepted;
+    this.loading = true;
     if (accepted) {
       this.userDataService.setUserData('contractAccepted', true);
       this.userDataService.completeRegistration();
       console.log('complete registration', this.userDataService.completeRegistration());
-      this.navCtrl.navigateForward('/successful');
+      setTimeout(() => {
+        this.navCtrl.navigateForward('/successful');
+      }, 2000);
+    } else {
+      console.error("Invalid form submission");
+    }
+
     }
   }
 
 
-
-}

@@ -7,20 +7,11 @@
   font-family: 'Avenir LT Std 95 Black';
   src: url('/assets/font/AvenirLTStd-Roman.otf') format('opentype');
 }
-.toolbar-title{
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.8;
-  text-transform: uppercase;
-  color: #004B40;
-  text-align: center;
-}
 
 .contract-card-title{
  text-transform: uppercase;
  font-family: "Montserrat", sans-serif;
- font-size: 16px;
+ font-size: 16pt;
  font-weight: bold;
  line-height: 1.2;
  --color: #004B40;
@@ -30,7 +21,7 @@
 .contract-card-subtitle{
   font-family: "Avenir LT Std 55 Roman", sans-serif;
   color: #323232;
-  font-size: 14px;
+  font-size: 14pt;
   text-align: justify;
   text-align: left;
 }
@@ -41,7 +32,7 @@
 
 mat-card-title{
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: bold;
   line-height: 1.9;
   text-transform: uppercase;
@@ -52,7 +43,7 @@ mat-card-title{
 mat-card-content{
   font-family: "Avenir LT Std 55 Roman", sans-serif;
   color: #323232;
-  font-size: 14px;
+  font-size: 14pt;
   text-align: left;
   line-height: 1.5;
 }
@@ -62,33 +53,31 @@ mat-card-content{
 
 .contract-lee{
   font-family: 'Avenir LT Std 95 Black';
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 16pt;
   line-height: 1.9;
   color: #004B40;
-  opacity: 0.9;
+  font-weight: bold;
   margin-top: 20px;
   text-decoration: underline;
 }
 
 .example-section{
   font-family: "Avenir LT Std 55 Roman", sans-serif;
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: 800;
   line-height: 1.8;
   color: #004B40;
 }
 
 ion-img{
-  width: 140px;
-  height: 140px;
+  width: 72.35pt;
+  height: 85.12pt;
 }
 
 .img-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 10px;
 }
 
 .ion-card {
@@ -103,7 +92,7 @@ ion-img{
 .button-submit button{
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -122,4 +111,41 @@ ion-img{
 .custom-button:not([disabled]) {
   background-color: #1EEB00;
   color: #004B40;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 475px) {
+  .contract-card-title {
+    font-size: 12pt;
+  }
+
+  .contract-card-subtitle {
+    font-size: 10pt;
+  }
+
+  mat-card-title {
+    font-size: 14pt;
+  }
+
+  mat-card-content {
+    font-size: 12pt;
+  }
+
+  .contract-lee {
+    font-size: 14pt;
+  }
+
+  .example-section {
+    font-size: 14pt;
+  }
+
+  .button-submit button {
+    font-size: 14pt;
+    padding: 20px 0;
+  }
+
+  ion-img {
+    width: 60.35pt;
+    height: 67.07pt;
+    margin-top: 30px;
+  }
 }
