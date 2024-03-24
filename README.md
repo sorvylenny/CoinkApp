@@ -6,7 +6,7 @@ tus finanzas de manera efectiva.
 
 ## Dependencies
 
-This project uses the following dependencies:
+Este proyecto utiliza las siguientes dependencias:
 
 - [Angular: A platform for building scalable and dynamic web applications.](https://angular.io/)
   - [@angular/animations](https://angular.io/api/animations) (^17.0.2)
@@ -34,7 +34,7 @@ This project uses the following dependencies:
 
 ## Getting Started
 
-To get started with the project, follow these steps:
+Para comenzar con el proyecto, siga estos pasos:
 
 1. Clone the repository:(https://github.com/sorvylenny/CoinkApp)
 2. Navigate to the project directory: Master,
@@ -43,11 +43,16 @@ To get started with the project, follow these steps:
 5. Open the application in your browser at [http://localhost:8100/](http://localhost:8100/).
 6. For the deployed version, visit .
 
+Para comenzar la visualización en la plataforma Android, siga estos pasos:
+1. Construir el proyecto:´ionic build´
+2. Agregar la plataforma Android:´ionic cap add android´
+3. Abrir el proyecto en Android Studio:´npx cap open android´
+4. Ejecutar en el emulador de Android: En Android Studio, selecciona un emulador disponible con SO android 11 hacia abajo y ejecuta la aplicación.
+Nota:(´En dispositivos Android 12 y Android 12L, la imagen de la pantalla de bienvenida no se muestra cuando se inicia desde lanzadores de terceros como Nova Launcher, MIUI, Realme Launcher, OPPO Launcher, etc.´)
+
 ##Notas
 El enpoint suministrado en el PDF para realizar la prueba, el de typeDocument si funciono que fue esta ruta (https://api.bancoink.biz/qa/signup/documentTypes?apiKey=030106)
-pero el de genero que fue esta ruta (https://api.bancoink.biz/qa/signup/genders?apiKey=030106) me dio esta respuesta en JSON ({
-"payload": "kMA7j4qV2T8JwoUYgE+Nsy/u/W35JC7AGhZSL88IMww8tVz+rBCNzVfDhZowtZIjilgQLJ52lGbbfHXxQLXj7JavG6ZN+oUiF7HoYqUivT4c8QIJSZDEizKu2mv5RdVolq8bpk36hSL8qE2uFgU/cg=="
-}), para solucionar lo del genero cree un arreglo en el typescript y lo llame con un *ngfor en el Html.
+pero el de genero que fue esta ruta (https://api.bancoink.biz/qa/signup/genders?apiKey=030106) me dio esta respuesta en JSON ({"payload":"kMA7j4qV2T8JwoUYgE+Nsy/u/W35JC7AGhZSL88IMww8tVz+rBCNzVfDhZowtZIjilgQLJ52lGbbfHXxQLXj7JavG6ZN+oUiF7HoYqUivT4c8QIJSZDEizKu2mv5RdVolq8bpk36hSL8qE2uFgU/cg=="}), para solucionar lo del genero cree un arreglo en el typescript y lo llame con un *ngfor en el Html.
 
 ## Author
-This project was developed by Katherine Flores <floresmKatherine@gmail.com.>
+Este proyecto fue desarrollado porKatherine Flores <floresmKatherine@gmail.com.>
