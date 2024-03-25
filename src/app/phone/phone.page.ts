@@ -17,7 +17,6 @@ export class PhonePage {
       [Validators.required, this.validatePhoneNumber]
     ]
   });
-  tooltipMessage: string = 'Introduce tu número de teléfono';
   showKeyboard: boolean = false;
   numberBuffer: string = "";
   constructor(
@@ -61,10 +60,6 @@ validatePhoneNumber(control: AbstractControl): ValidationErrors | null {
   // function implementation//
   addNumber(number: number) {
     if (this.numberBuffer.length < 11) {
-     /*  if (this.numberBuffer.length === 0 && number !== 3) {
-        return;
-      } */
-
       this.numberBuffer += number.toString();
       let formattedNumber = "";
       for (let i = 0; i < this.numberBuffer.length; i++) {

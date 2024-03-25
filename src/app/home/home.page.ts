@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component } from "@angular/core";
 import { NavController } from "@ionic/angular";
 
 @Component({
@@ -8,7 +7,8 @@ import { NavController } from "@ionic/angular";
   styleUrls: ["home.page.scss"]
 })
 export class HomePage {
-  constructor(private navCtrl: NavController, private router: Router) {}
+
+  constructor(private navCtrl: NavController) {}
 
   loading: boolean = false;
 
@@ -18,7 +18,7 @@ export class HomePage {
   navigateToNextPage() {
     this.loading = true;
     setTimeout(() => {
-      this.router.navigate(["/phone"]);
+      this.navCtrl.navigateForward(["/phone"]);
       this.loading = false;
     }, 2000);
   }

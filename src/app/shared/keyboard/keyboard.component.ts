@@ -13,15 +13,16 @@ export class KeyboardComponent   {
   @Output() numberClicked = new EventEmitter<number>();
   @Output() deleteClicked = new EventEmitter<void>();
   @Output() acceptClicked = new EventEmitter<void>();
-
+// Function to add a number to the input field
   addNumber(number: number) {
     this.numberClicked.emit(number);
   }
 
+  // Function to delete a number from the input field
   deleteNumber() {
     this.deleteClicked.emit();
   }
-
+// Function to accept the entered number if the form is valid
   acceptNumber() {
     if (this.formValid) {
       this.acceptClicked.emit();
