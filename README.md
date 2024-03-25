@@ -1,8 +1,9 @@
 CoinkApp
+
+
 ##Descripción
-CoinkApp es una aplicación móvil desarrollada en Ionic con Angular que permite simular un registro exitoso en Coink utilizando 
-su API. Coink es una plataforma de gestión financiera personal que ofrece una variedad de herramientas y servicios para administrar
-tus finanzas de manera efectiva.
+CoinkApp es una aplicación móvil desarrollada en Ionic con Angular que permite simular un registro exitoso en Coink utilizando su API. Coink es una plataforma de gestión financiera personal que ofrece una variedad de herramientas y servicios para administrar tus finanzas de manera efectiva.
+
 
 ## Dependencies
 
@@ -36,12 +37,12 @@ Este proyecto utiliza las siguientes dependencias:
 
 Para comenzar con el proyecto, siga estos pasos:
 
-1. Clone the repository:(https://github.com/sorvylenny/CoinkApp)
-2. Navigate to the project directory: Master,
-3. Install dependencies: `npm install express`
-4. Run the application: `ionic serve / ionic serve --external`
-5. Open the application in your browser at [http://localhost:8100/](http://localhost:8100/).
-6. For the deployed version, visit .
+1. Clona el repositorio: [https://github.com/sorvylenny/CoinkApp](https://github.com/sorvylenny/CoinkApp)
+2. Navega al directorio del proyecto: Master.
+3. Instala las dependencias: `npm install express`.
+4. Ejecuta la aplicación: `ionic serve / ionic serve --external`.
+5. Abre la aplicación en tu navegador en [http://localhost:8100/](http://localhost:8100/).
+6. Para la versión desplegada, abre a carpeta apk que esta ubicada (https://github.com/sorvylenny/CoinkApp/tree/master/apk).
 
 Para comenzar la visualización en la plataforma Android, siga estos pasos:
 1. Construir el proyecto:´ionic build´
@@ -55,4 +56,4 @@ El enpoint suministrado en el PDF para realizar la prueba, el de typeDocument si
 pero el de genero que fue esta ruta (https://api.bancoink.biz/qa/signup/genders?apiKey=030106) me dio esta respuesta en JSON ({"payload":"kMA7j4qV2T8JwoUYgE+Nsy/u/W35JC7AGhZSL88IMww8tVz+rBCNzVfDhZowtZIjilgQLJ52lGbbfHXxQLXj7JavG6ZN+oUiF7HoYqUivT4c8QIJSZDEizKu2mv5RdVolq8bpk36hSL8qE2uFgU/cg=="}), para solucionar lo del genero cree un arreglo en el typescript y lo llame con un *ngfor en el Html.
 
 ## Author
-Este proyecto fue desarrollado porKatherine Flores <floresmKatherine@gmail.com.>
+Este proyecto fue desarrollado por Katherine Flores <floresmKatherine@gmail.com.>
