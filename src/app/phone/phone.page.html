@@ -30,7 +30,7 @@
     <!-- form phone -->
     <form [formGroup]="phoneNumber" (ngSubmit)="onSubmit()">
       <!-- input -->
-      <ion-item class="ion-text-center input-container">
+      <ion-item matTooltip="Ingresa tu número celular empiece con (300)" class="ion-text-center input-container">
         <ion-input
           formControlName="phoneNumber"
           type="tel"
@@ -40,10 +40,11 @@
       <!-- end input -->
       </ion-item>
       <!-- error message -->
-      <ion-item
-        *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched">
-        <ion-text color="danger">Por favor ingresa un número válido de 10
-          dígitos.</ion-text>
+      <ion-item *ngIf="phoneNumber.get('phoneNumber')?.errors?.['startsWithThree']">
+        <ion-text color="danger">El número debe comenzar por (300) N° Colombiano.</ion-text>
+      </ion-item>
+      <ion-item *ngIf="phoneNumber.get('phoneNumber')?.errors?.['tenDigits']">
+        <ion-text color="danger">Por favor ingresa un número de 10 dígitos.</ion-text>
       </ion-item>
       <!-- end error message -->
       <!-- keyboard -->

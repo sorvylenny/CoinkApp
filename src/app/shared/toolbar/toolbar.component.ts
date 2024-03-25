@@ -28,7 +28,6 @@ export class ToolbarComponent   {
   }
 
   getBackRoute(): string {
-    console.log("current step", this.currentStep);
     switch (this.currentStep) {
       case 0:
         return '/home';

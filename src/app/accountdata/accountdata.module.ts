@@ -16,7 +16,6 @@ import { IonicModule } from '@ionic/angular';
 import { AccountdataPageRoutingModule } from './accountdata-routing.module';
 
 import { AccountdataPage } from './accountdata.page';
-import { MatNativeDateModule } from '@angular/material/core';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -37,6 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
   ],
   declarations: [AccountdataPage],
+
 
 })
 export class AccountdataPageModule {}

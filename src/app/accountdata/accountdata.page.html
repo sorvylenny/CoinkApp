@@ -40,7 +40,7 @@
           <mat-label>Tipo de Documento</mat-label>
           <mat-select formControlName="typeDocument">
             <mat-option *ngFor="let docType of identification "
-              [value]="docType.id">
+              [value]="docType">
               {{ docType.description }}
             </mat-option>
           </mat-select>
@@ -76,7 +76,7 @@
           <mat-datepicker #picker></mat-datepicker>
           <mat-error
             *ngIf="dataccount.get('dateExpedition')?.invalid && (dataccount.get('dateExpedition')?.dirty || dataccount.get('dateExpedition')?.touched)">
-            La fecha de expedición del documento es obligatoria.
+            La fecha de expedición es obligatoria (mm/dd/yyyy).
           </mat-error>
         </mat-form-field>
         <!-- form date birth -->
@@ -89,11 +89,11 @@
           <mat-datepicker #picker1></mat-datepicker>
           <mat-error
             *ngIf="dataccount.get('dateBirth')?.errors?.['invalidAge']">
-            Debes ser mayor de 17 años.
+            Debes ser mayor de 18 años.
           </mat-error>
           <mat-error
             *ngIf="dataccount.get('dateBirth')?.invalid && (dataccount.get('dateBirth')?.dirty || dataccount.get('dateBirth')?.touched)">
-            La fecha de nacimiento es obligatoria.
+            La fecha de nacimiento es obligatoria (mm/dd/yyyy).
           </mat-error>
         </mat-form-field>
         <!-- form gender -->
@@ -118,7 +118,7 @@
         <!-- form email -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Correo electronico</mat-label>
-          <input matInput formControlName="email" placeholder>
+          <input type="email" matInput formControlName="email" placeholder>
           <mat-error
             *ngIf="dataccount.get('email')?.invalid && dataccount.get('email')?.touched">
             El correo electronico es obligatorio.
@@ -127,7 +127,7 @@
         <!-- form confirm email -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Confirmar correo electronico</mat-label>
-          <input matInput formControlName="confirmMail" placeholder>
+          <input  type="email" matInput formControlName="confirmMail" placeholder>
           <mat-icon *ngIf="dataccount.get('confirmMail')?.valid"
             style="color: #1EEA00;" matSuffix>check</mat-icon>
           <mat-error

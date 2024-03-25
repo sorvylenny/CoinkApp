@@ -27,9 +27,9 @@ export class ContractPage  {
     if (accepted) {
       this.userDataService.setUserData('contractAccepted', true);
       this.userDataService.completeRegistration();
-      console.log('complete registration', this.userDataService.completeRegistration());
       setTimeout(() => {
         this.navCtrl.navigateForward('/successful');
+        this.loading = false;
       }, 2000);
     } else {
       console.error("Invalid form submission");

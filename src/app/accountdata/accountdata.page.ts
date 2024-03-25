@@ -89,6 +89,7 @@ export class AccountdataPage implements OnInit {
       this.userDataService.setMultipleUserData(this.dataccount.value);
       setTimeout(() => {
         this.navCtrl.navigateForward("/contract");
+        this.loading = false;
       }, 2000);
     } else {
       console.error("Invalid form submission");

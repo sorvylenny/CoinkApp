@@ -30,5 +30,24 @@ export class UserDataService {
 
   completeRegistration() {
    console.log('registro completo',this.userData);
+
+   const userDataJSON = JSON.stringify(this.userData);
+   const blob = new Blob([userDataJSON], { type: 'text/plain' });
+   const anchor = document.createElement('a');
+   anchor.download = 'userData-log.txt';
+   anchor.href = window.URL.createObjectURL(blob);
+   anchor.dataset["downloadurl"]= ['text/plain', anchor.download, anchor.href].join(':');
+   anchor.style.display = 'none';
+
+   // Agrega el elemento <a> al cuerpo del documento
+   document.body.appendChild(anchor);
+
+   // Simula un clic en el elemento <a> para iniciar la descarga
+   anchor.click();
+
+   // Elimina el elemento <a> después de la descarga
+   document.body.removeChild(anchor);
   }
+
+
 }

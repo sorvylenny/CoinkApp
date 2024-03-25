@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from "@angular/forms";
 import { NavController } from "@ionic/angular";
 import { UserDataService } from "../services/user-data.service";
 
@@ -14,9 +14,10 @@ export class PhonePage {
   phoneNumber = this._formBuilder.group({
     phoneNumber: [
       "",
-      [Validators.required, Validators.minLength(11), Validators.maxLength(11)]
+      [Validators.required, this.validatePhoneNumber]
     ]
   });
+  tooltipMessage: string = 'Introduce tu número de teléfono';
   showKeyboard: boolean = false;
   numberBuffer: string = "";
   constructor(
@@ -28,24 +29,41 @@ export class PhonePage {
   // Handles form submission by saving valid phone number to user data and navigating to account data//
   onSubmit() {
     if (this.phoneNumber.valid) {
-      const phoneNumberValue = this.phoneNumber.value.phoneNumber;
-      this.userDataService.setUserData("phoneNumber", phoneNumberValue);
-      this.loading = true;
-      setTimeout(() => {
-        this.navCtrl.navigateForward("/accountdata");
-        this.loading = false;
-      }, 2000);
+      const phoneNumberValue = this.phoneNumber.get('phoneNumber')!.value;
+      // Comprueba si el número empieza por '3'
+      if (phoneNumberValue!.startsWith('3')) {
+        this.userDataService.setUserData("phoneNumber", phoneNumberValue);
+        this.loading = true;
+        setTimeout(() => {
+          this.navCtrl.navigateForward("/accountdata");
+          this.loading = false;
+        }, 2000);
+      } else {
+        console.error("El número de teléfono debe comenzar por 3.");
+
+      }
     } else {
       console.error("Invalid form submission");
     }
   }
+  // Function that acts as a validator
+validatePhoneNumber(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (value && !value.startsWith('3')) {
+    return { startsWithThree: true };
+  }
+  if (value && value.length !== 10) {
+    return { tenDigits: true };
+  }
+  return null;
+}
 
   // function implementation//
   addNumber(number: number) {
     if (this.numberBuffer.length < 11) {
-      if (this.numberBuffer.length === 0 && number !== 3) {
+     /*  if (this.numberBuffer.length === 0 && number !== 3) {
         return;
-      }
+      } */
 
       this.numberBuffer += number.toString();
       let formattedNumber = "";
