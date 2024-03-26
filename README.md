@@ -52,8 +52,47 @@ Para comenzar la visualización en la plataforma Android, siga estos pasos:
 Nota:(´En dispositivos Android 12 y Android 12L, la imagen de la pantalla de bienvenida no se muestra cuando se inicia desde lanzadores de terceros como Nova Launcher, MIUI, Realme Launcher, OPPO Launcher, etc.´)
 
 ##Notas
-El enpoint suministrado en el PDF para realizar la prueba, el de typeDocument si funciono que fue esta ruta (https://api.bancoink.biz/qa/signup/documentTypes?apiKey=030106)
+--El enpoint suministrado en el PDF para realizar la prueba, el de typeDocument si funciono que fue esta ruta (https://api.bancoink.biz/qa/signup/documentTypes?apiKey=030106)
 pero el de genero que fue esta ruta (https://api.bancoink.biz/qa/signup/genders?apiKey=030106) me dio esta respuesta en JSON ({"payload":"kMA7j4qV2T8JwoUYgE+Nsy/u/W35JC7AGhZSL88IMww8tVz+rBCNzVfDhZowtZIjilgQLJ52lGbbfHXxQLXj7JavG6ZN+oUiF7HoYqUivT4c8QIJSZDEizKu2mv5RdVolq8bpk36hSL8qE2uFgU/cg=="}), para solucionar lo del genero cree un arreglo en el typescript y lo llame con un *ngfor en el Html.
+--El loading de carga al inicio de la aplicacion para los sistemas operativos mas avanzados, se podria hacer asi en el -------typescript(import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+
+@Component({
+  selector: 'app-load',
+  templateUrl: './load.page.html',
+  styleUrls: ['./load.page.scss'],
+})
+export class LoadPage implements OnInit {
+
+  constructor( private navCtrl: NavController) { }
+  ngOnInit() {
+    setTimeout(() => {
+      this.navCtrl.navigateForward("/home");
+    }, 2000);
+  }
+}
+) 
+--Html (<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="container">
+    <div class="image-container">
+      <ion-img "assets/image/coink.png></ion-img>
+    </div>
+    <ion-item lines="none" class="loading-container">
+      <ion-spinner name="dots"></ion-spinner>
+    </ion-item>
+  </div>
+</ion-content>)
+--Scss(ion-content {
+  --background: #1EEA00 !important;
+}
+
+.image{
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+})
 
 ## Author
 Este proyecto fue desarrollado por Katherine Flores <floresmKatherine@gmail.com.>
